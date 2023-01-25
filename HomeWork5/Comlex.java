@@ -6,30 +6,31 @@ public class Comlex extends CalcModel{
     }
 
     public CalcModel sum(CalcModel calcModel1, CalcModel calcModel2) {
-        CalcModel result = new CalcModel(calcModel1.x + calcModel2.x, calcModel1.y + calcModel1.y);
+        CalcModel result = new CalcModel(calcModel1.getX() + calcModel2.getX(), calcModel1.getY() + calcModel1.getY());
         return result;
     }
 
     public CalcModel sub(CalcModel calcModel1, CalcModel calcModel2) {
-        CalcModel result = new CalcModel(calcModel1.x - calcModel2.x, calcModel1.y - calcModel1.y);
+        CalcModel result = new CalcModel(calcModel1.getX() - calcModel2.getY(), calcModel1.getX() - calcModel1.getY());
         return result;
     }
 
     public CalcModel mult(CalcModel calcModel1, CalcModel calcModel2) {
-        CalcModel result = new CalcModel(calcModel1.x * calcModel2.x - calcModel1.y * calcModel1.y,
-                calcModel1.y * calcModel1.x + calcModel1.x * calcModel2.y);
+        CalcModel result = new CalcModel(calcModel1.getX() * calcModel2.getY() - calcModel1.getY() * calcModel1.getY(),
+                calcModel1.getY() * calcModel1.getX() + calcModel1.getX() * calcModel2.getY());
         return result;
     }
 
     public CalcModel div(CalcModel calcModel1, CalcModel calcModel2) {
         CalcModel result = new CalcModel(
-                (calcModel1.x * calcModel2.x + calcModel1.y * calcModel1.y)
-                        / (calcModel1.x * calcModel1.x + calcModel1.y * calcModel1.y),
-                (calcModel1.y * calcModel1.x - calcModel1.x * calcModel2.y)
-                        / (calcModel1.x * calcModel1.x + calcModel1.y * calcModel1.y));
+                (calcModel1.getX() * calcModel2.getX() + calcModel1.getY() * calcModel1.getY())
+                        / (calcModel1.getX() * calcModel1.getX() + calcModel1.getY() * calcModel1.getY()),
+                (calcModel1.getY() * calcModel1.getX() - calcModel1.getX() * calcModel2.getY())
+                        / (calcModel1.getX() * calcModel1.getX() + calcModel1.getY() * calcModel1.getY()));
         return result;
     }
-    @Override
-    public String toString() {
-        return x + "+" + y + "i"; 
-    }}
+    // @Override
+    // public String toString() {
+    //     return getX() + "+" + getY() + "i"; 
+    // }
+}

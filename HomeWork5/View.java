@@ -13,7 +13,7 @@ public class View {
 	public CalcModel userInput() {
 		Scanner scanner = new Scanner(System.in);
 		int choice = choiceTypeNum();
-		CalcModel calcModel = new CalcModel();
+		CalcModel calcModel;
 
 		if (choice == 1) {
 			System.out.println(
@@ -21,18 +21,20 @@ public class View {
 			String userInput = scanner.nextLine();
 			String[] temp;
 			temp = userInput.split("/");
-			calcModel.x = Integer.parseInt(temp[0]);
-			calcModel.y = Integer.parseInt(temp[1]);
+			calcModel = new CalcModel(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+			return calcModel;
+
 		} else if (choice == 2) {
 			System.out.println(
 					"Введите комплексное число в формате 1+2i : ");
 			String userInput = scanner.nextLine();
 			String[] temp;
 			temp = userInput.split("\\+");
-			calcModel.x = Integer.parseInt(temp[0]);
-			calcModel.y = Integer.parseInt(temp[1]);
-		}
-		return calcModel;
+			calcModel = new CalcModel(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+			return calcModel;
+
+		} else
+			throw new NullPointerException("Пользователь не найден");
 	}
 
 	public Integer getOper() {

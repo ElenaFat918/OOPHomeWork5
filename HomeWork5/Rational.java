@@ -4,8 +4,8 @@ public class Rational extends CalcModel {
 
     public CalcModel reduction(CalcModel calcModel) {
         int m = 1;
-        int x = calcModel.x;
-        int y = calcModel.y;
+        int x = calcModel.getX();
+        int y = calcModel.getY();
         if (x < y) {
             m = x;
             x = y;
@@ -17,43 +17,45 @@ public class Rational extends CalcModel {
             x = y;
             y = m;
         }
-        CalcModel result = new CalcModel(); //
+        CalcModel result; //
         if (m == 0) {
-            result.x = calcModel.x;
-            result.y = calcModel.y;
+            result = new CalcModel(getX(), getY());
         } else {
-            result.x = calcModel.x / m;
-            result.y = calcModel.y / m;
+            result = new CalcModel(getX() / m, getY() / m);
         }
         return result;
     }
 
     public CalcModel sum(CalcModel calcModel1, CalcModel calcModel2) {
-        CalcModel sum = new CalcModel(calcModel1.x * calcModel2.y + calcModel2.x * calcModel1.y,
-                calcModel1.y * calcModel2.y);
+        CalcModel sum = new CalcModel(calcModel1.getX() * calcModel2.getY() + calcModel2.getX() * calcModel1.getY(),
+                calcModel1.getY() * calcModel2.getY());
         System.out.println(sum);
         return reduction(sum);
     }
 
     public CalcModel sub(CalcModel calcModel1, CalcModel calcModel2) {
-        CalcModel sub = new CalcModel(calcModel1.x * calcModel2.y - calcModel1.x * calcModel1.y,
-                calcModel1.y * calcModel2.y);
+        CalcModel sub = new CalcModel(calcModel1.getX() * calcModel2.getY() - calcModel1.getX() * calcModel1.getY(),
+                calcModel1.getY() * calcModel2.getY());
         CalcModel result = new CalcModel();
         result = reduction(sub);
         return result;
     }
 
     public CalcModel mult(CalcModel calcModel1, CalcModel calcModel2) {
-        CalcModel mult = new CalcModel(calcModel1.x * calcModel2.x, calcModel1.y * calcModel2.y);
+        CalcModel mult = new CalcModel(calcModel1.getX() * calcModel2.getX(), calcModel1.getY() * calcModel2.getY());
         CalcModel result = new CalcModel();
         result = reduction(mult);
         return result;
     }
 
     public CalcModel div(CalcModel calcModel1, CalcModel calcModel2) {
-        CalcModel div = new CalcModel(calcModel1.x * calcModel2.y, calcModel1.y * calcModel2.x);
+        CalcModel div = new CalcModel(calcModel1.getX() * calcModel2.getY(), calcModel1.getY() * calcModel2.getX());
         CalcModel result = new CalcModel();
         result = reduction(div);
         return result;
     }
+    // @Override
+    // public String toString() {
+    //     return getX() + "+(/)" + getY() + "(i)";
+    // }
 }
